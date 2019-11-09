@@ -1,0 +1,54 @@
+<html>
+<body>
+<title>Books page</title>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+<div>
+    <h1>Hello user, {{username}} !</h1>
+    <h1>All books</h1>
+
+    <form action="/booksUser" method="post">
+        <b>{{#made}}
+                {{made}}
+            {{/made}}</b><p/>
+
+        <i>Pages:</i>
+        <a href="{{url}}?&page={{previousPage}}"> previous...<a/>
+        <b href="#"> {{active}}<a/> </b>
+        <a href="{{url}}?&page={{nextPage}}">...next</a>
+        ..{{allPages}} </p>
+
+        {{#page}}
+            <div>
+                <b>{{id}}</b>
+                <span>{{bookTitle}}</span>
+                <span>{{bookAuthor}}</span>
+                <i>{{price}}</i>
+                <span>{{date}}</span>
+
+                <input type="checkbox" name="bookTitle" value="{{bookTitle}}">
+            </div>
+        {{/page}}
+        <b>{{#error}}
+            {{error}}
+        {{/error}}
+        </b>
+
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <p><input type="submit" value="Make an order"/></p>
+    </form>
+</div>
+
+<div>
+    <form action="/booksUser/userOrders" method="get">
+        <input type="submit" value="My orders"/>
+    </form>
+</div>
+<p><a href="/booksAdmin">Page admin</a></p>
+</body>
+</html>

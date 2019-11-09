@@ -1,0 +1,25 @@
+<html>
+<body>
+<title>Users orders</title>
+
+<a href="/homePage">Home page</a><br/>
+<a href="/booksAdmin">Back</a>
+    <form action="/booksAdmin/userOrders">
+    <p>
+    {{#userOrders}}
+        <div>
+            <tr>
+                <td>{{bookTitleOrder}}</td>
+                <td>{{bookAuthorOrder}}</td>
+                <td>{{priceOrder}}</td>
+                <td>{{name}}</td>
+                <td>{{mail}}</td>
+            </tr>
+        </div>
+    {{/userOrders}}
+    </p>
+    </form>
+
+
+</body>
+</html>

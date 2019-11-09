@@ -1,0 +1,20 @@
+<html>
+<body>
+<title>Add a book</title>
+
+<a href="/homePage">Home page</a>
+
+<div>
+    <h2>Add a book</h2>
+    <form method="post">
+        <input type="text" name="bookTitle" placeholder="add title"/>
+        <input type="text" name="bookAuthor" placeholder="add author">
+        <input type="text" name="price" placeholder="add price">
+        <input type="date" name="date" placeholder="add date">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <button type="submit">Add book</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 @EnableJpaRepositories
 @Entity
-@Table(name = "usr")
+@Table(name = "users")
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor

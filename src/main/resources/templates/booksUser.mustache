@@ -14,8 +14,9 @@
 
     <form action="/booksUser" method="post">
         <b>{{#made}}
-                {{made}}
-            {{/made}}</b><p/>
+            {{made}}
+        {{/made}}</b>
+        <p/>
 
         <i>Pages:</i>
         <a href="{{url}}?&page={{previousPage}}"> previous...<a/>
@@ -23,17 +24,26 @@
         <a href="{{url}}?&page={{nextPage}}">...next</a>
         ..{{allPages}} </p>
 
-        {{#page}}
-            <div>
-                <b>{{id}}</b>
-                <span>{{bookTitle}}</span>
-                <span>{{bookAuthor}}</span>
-                <i>{{price}}</i>
-                <span>{{date}}</span>
+        <table>
+            <tr>
+                <th width="25">Id</th>
+                <th width="120">Title</th>
+                <th width="120">Author</th>
+                <th width="120">Price</th>
+                <th width="120">Date</th>
+            </tr>
+            {{#page}}
+                <tr>
+                    <td><b>{{id}}</b></td>
+                    <td><span>{{bookTitle}}</span></td>
+                    <td><span>{{bookAuthor}}</span></td>
+                    <td><i>{{price}}</i></td>
+                    <td><span>{{date}}</span></td>
+                    <td><input type="checkbox" name="bookTitle" value="{{bookTitle}}"></td>
+                </tr>
+            {{/page}}
+        </table>
 
-                <input type="checkbox" name="bookTitle" value="{{bookTitle}}">
-            </div>
-        {{/page}}
         <b>{{#error}}
             {{error}}
         {{/error}}

@@ -13,23 +13,20 @@
 
 <h1>My orders</h1>
 <form action="/booksUser/userOrders">
-
-
-        <table>
-            <tr>
-                <td>Title</td>
-                <td>Author</td>
-                <td>Price</td>
-            </tr>
-            {{#userOrders}}
+    <table>
+        <tr>
+            <th width="120">Title</th>
+            <th width="120">Author</th>
+            <th width="120">Price</th>
+        </tr>
+        {{#userOrders}}
             <tr>
                 <td>{{bookTitleOrder}}</td>
                 <td>{{bookAuthorOrder}}</td>
                 <td>{{priceOrder}}</td>
             </tr>
-            {{/userOrders}}
-
-        </table>
+        {{/userOrders}}
+    </table>
 </form>
 
 </body>

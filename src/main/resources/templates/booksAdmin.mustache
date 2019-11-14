@@ -23,18 +23,28 @@
         <a href="/booksAdmin?&page={{nextPage}}">...next</a>
         ..{{allPages}} </p>
 
-        {{#page}}
-            <div>
-                <b>{{id}}</b>
-                <span>{{bookTitle}}</span>
-                <span>{{bookAuthor}}</span>
-                <i>{{price}}</i>
-                <span>{{date}}</span>
-
-                <td><a href="/booksAdmin/edit/{{id}}">Edit</a></td>
-                <td><a href="/booksAdmin/remove/{{id}}">Delete</a></td>
-            </div>
-        {{/page}}
+        <table>
+            <tr>
+                <th width="25">Id</th>
+                <th width="120">Title</th>
+                <th width="120">Author</th>
+                <th width="120">Price</th>
+                <th width="120">Date</th>
+                <th width="60">Edit</th>
+                <th width="60">Delete</th>
+            </tr>
+            {{#page}}
+                <tr>
+                    <td><b>{{id}}</b></td>
+                    <td><span>{{bookTitle}}</span></td>
+                    <td><span>{{bookAuthor}}</span></td>
+                    <td><i>{{price}}</i></td>
+                    <td><span>{{date}}</span></td>
+                    <td><a href="/booksAdmin/edit/{{id}}">Edit</a></td>
+                    <td><a href="/booksAdmin/remove/{{id}}">Delete</a></td>
+                </tr>
+            {{/page}}
+        </table>
         <!--        <td><a href="/add">Add a book</a></td>-->
     </form>
 

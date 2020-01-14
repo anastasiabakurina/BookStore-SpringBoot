@@ -1,0 +1,33 @@
+<html>
+<body>
+<title>Books page</title>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+<a href="/homePage">Home page</a><br/>
+<a href="/booksUser">Back</a>
+
+<h1>My orders</h1>
+<form action="/booksUser/userOrders">
+    <table>
+        <tr>
+            <th width="120">Title</th>
+            <th width="120">Author</th>
+            <th width="120">Price</th>
+        </tr>
+        {{#userOrders}}
+            <tr>
+                <td>{{bookTitleOrder}}</td>
+                <td>{{bookAuthorOrder}}</td>
+                <td>{{priceOrder}}</td>
+            </tr>
+        {{/userOrders}}
+    </table>
+</form>
+
+</body>
+</html>

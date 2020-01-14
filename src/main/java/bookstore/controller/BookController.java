@@ -6,6 +6,7 @@ import bookstore.model.UserOrders;
 import bookstore.repo.BookRepo;
 import bookstore.repo.UserOrdersRepo;
 import bookstore.repo.UserRepo;
+import bookstore.service.BookService;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class BookController {
     @Autowired
     private BookRepo bookRepository;
 
+    @Autowired
+    private BookService bookService;
+
     @GetMapping(value = {"/", "/homePage"})
     public String home(@RequestParam(name = "name", required = false, defaultValue = "people") String name, Model model) {
         model.addAttribute("name", name);
@@ -43,7 +47,7 @@ public class BookController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/booksAdmin")
     public String adminPage(Model model, @PageableDefault(direction = Sort.Direction.DESC) Pageable pageable) {
-        booksFindAllPagination(model, pageable);
+        bookService.booksFindAllPagination(model, pageable);
         return "booksAdmin";
     }
 
@@ -85,46 +89,17 @@ public class BookController {
     public String booksUser(Model model, @PageableDefault(direction = Sort.Direction.DESC) Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", authentication.getName());
-        booksFindAllPagination(model, pageable);
+        bookService.booksFindAllPagination(model, pageable);
         return "booksUser";
     }
 
     @PostMapping("/booksUser")
     public String bookUserOrdersSave(@RequestParam String bookTitle, Model model,
                                      @PageableDefault(direction = Sort.Direction.DESC) Pageable pageable) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User userFromDb = userRepo.findByUsername(username);
-        model.addAttribute("username", username);
-
-        String stringBooks = Arrays.asList(bookTitle).toString();
-        String books = StringUtils.substringBetween(stringBooks, "[", "]");
-        for (String oneBook : books.split(",")) {
-            Book bookFind = bookRepository.findByBookTitle(oneBook);
-            val userOrders = UserOrders.builder().bookTitleOrder(bookFind.getBookTitle())
-                    .bookAuthorOrder(bookFind.getBookAuthor())
-                    .priceOrder(bookFind.getPrice())
-                    .name(username).mail(userFromDb.getMail()).build();
-            userOrdersRepository.save(userOrders);
-        }
+        bookService.saveUsersOrders(bookTitle, model);
         model.addAttribute("made", "Order is made!");
-        booksFindAllPagination(model, pageable);
+        bookService.booksFindAllPagination(model, pageable);
         return "booksUser";
-    }
-
-    private void booksFindAllPagination(Model model, @PageableDefault(direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Book> page = bookRepository.findAll(pageable);
-        model.addAttribute("page", page);
-        model.addAttribute("url", "/booksUser");
-
-        int allPages = page.getTotalPages() - 1;
-        model.addAttribute("allPages", allPages);
-        int active = page.getNumber();
-        if (active < allPages) {
-            model.addAttribute("nextPage", active + 1);
-        } else model.addAttribute("nextPage", "#");
-        model.addAttribute("previousPage", active - 1);
-        model.addAttribute("active", active);
     }
 
     @GetMapping("/booksUser/userOrders")

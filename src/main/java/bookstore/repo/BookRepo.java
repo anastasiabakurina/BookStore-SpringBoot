@@ -11,8 +11,8 @@ import java.util.Optional;
 @Repository
 public interface BookRepo extends CrudRepository<Book, Long> {
     Page<Book> findAll(Pageable pageable);
-Book findBookById(Long id);
-   Book findByBookTitle(String bookTitle);
+    Book findBookById(Long id);
+    Book findByBookTitle(String bookTitle);
 //   List<Book> findByBookTitle(String bookTitle);
 //    Book findById(Long id);
 }

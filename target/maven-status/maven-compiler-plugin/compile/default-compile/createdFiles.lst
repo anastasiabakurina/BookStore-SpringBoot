@@ -1,0 +1,15 @@
+bookstore\controller\LoginController.class
+bookstore\repo\UserOrdersRepo.class
+bookstore\model\Book.class
+bookstore\config\MvcConfig.class
+bookstore\model\UserOrders.class
+bookstore\repo\UserRepo.class
+bookstore\config\WebSecurityConfig.class
+bookstore\model\User.class
+bookstore\model\Book$BookBuilder.class
+bookstore\controller\RegistrationController.class
+bookstore\repo\BookRepo.class
+bookstore\controller\ControllerErrors.class
+bookstore\model\UserOrders$UserOrdersBuilder.class
+bookstore\controller\BookController.class
+bookstore\StartApp.class

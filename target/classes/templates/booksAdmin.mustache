@@ -1,0 +1,62 @@
+<html>
+<body>
+<title>Admin page</title>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+<a href="/homePage">Home page</a><br/>
+<a href="/booksUser">Back</a>
+
+<h1>Admin page</h1>
+
+<div>
+    <h1>All books</h1>
+    <form action="/booksAdmin">
+
+        <i>Pages:</i>
+        <a href="/booksAdmin?&page={{previousPage}}"> previous...<a/>
+        <b href="#"> {{active}}<a/> </b>
+        <a href="/booksAdmin?&page={{nextPage}}">...next</a>
+        ..{{allPages}} </p>
+
+        <table>
+            <tr>
+                <th width="25">Id</th>
+                <th width="120">Title</th>
+                <th width="120">Author</th>
+                <th width="120">Price</th>
+                <th width="120">Date</th>
+                <th width="60">Edit</th>
+                <th width="60">Delete</th>
+            </tr>
+            {{#page}}
+                <tr>
+                    <td><b>{{id}}</b></td>
+                    <td><span>{{bookTitle}}</span></td>
+                    <td><span>{{bookAuthor}}</span></td>
+                    <td><i>{{price}}</i></td>
+                    <td><span>{{date}}</span></td>
+                    <td><a href="/booksAdmin/edit/{{id}}">Edit</a></td>
+                    <td><a href="/booksAdmin/remove/{{id}}">Delete</a></td>
+                </tr>
+            {{/page}}
+        </table>
+        <!--        <td><a href="/add">Add a book</a></td>-->
+    </form>
+
+    <form action="/booksAdmin/add">
+        <p><input type="submit" value="Add a book"/></p>
+    </form>
+
+    <form action="/booksAdmin/userOrders">
+        <p><input type="submit" value="Show users orders"/></p>
+    </form>
+
+</div>
+
+</body>
+</html>

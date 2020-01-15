@@ -1,15 +1,15 @@
 # BookStore-SpringBoot
-## Магазин по продаже книг на Spring Boot. 
+## Bookstore on Spring Boot. 
 
-Приложение включает отдельную страницу администратора, с вшитым в код паролем(a) и логином(admin). 
+The application includes a separate admin page, with the password (a) and the login (admin) which are embedded in the code.
 
   ![screenshot1](/img/1.png)
   
-Администратор может редактировать, удалять, добавлять книги, видеть список заказов.
+The administrator can edit, delete, add books and see the list of orders.
   
   ![screenshot3](/img/3.png)
   
-Так же приложение включает страницу пользователя, который может выбирать несколько книг и делать заказ.
+The application also includes a user’s page. User can select several books and make an order.
   
   ![screenshot2](/img/2.png)
   

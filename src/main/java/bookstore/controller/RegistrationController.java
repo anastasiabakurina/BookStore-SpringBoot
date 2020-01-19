@@ -1,5 +1,6 @@
 package bookstore.controller;
 
+import bookstore.config.ErrorsConfig;
 import bookstore.model.User;
 import bookstore.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,11 @@ public class RegistrationController {
 
         if (user.getPassword() != null && !user.getPassword().equals(user.getPasswordConfirmation())) {
             model.addAttribute("passwordError", "Passwords are different!");
+            return "registration";
         }
 
         if ( isConfirmEmpty || bindingResult.hasErrors()) {
-            Map<String, String> errors = ControllerErrors.getErrors(bindingResult);
+            Map<String, String> errors = ErrorsConfig.getErrors(bindingResult);
             model.mergeAttributes(errors);
             return "registration";
         }

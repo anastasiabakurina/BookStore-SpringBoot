@@ -5,20 +5,19 @@
 </head>
 <body>
 <h1>Login page</h1>
-
-<form action="/loginPage" method="post">
 <b>{{#usernameError}}
     {{usernameError}}
 {{/usernameError}}
 </b><p/>
-<b>{{#passwordError}}
-    {{passwordError}}
-{{/passwordError}}</b><p/>
+<b>{{#passwordErrorLogin}}
+    {{passwordErrorLogin}}
+{{/passwordErrorLogin}}</b><p/>
+
+<form action="/loginPage" method="post">
     <div><label> User name : <input type="text" name="username"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
     <div><input type="submit" value="Sign In"/></div>
-
 </form>
 <a href="/homePage">Home page</a>
 </body>

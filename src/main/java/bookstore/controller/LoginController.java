@@ -5,30 +5,30 @@ import bookstore.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 public class LoginController {
-    @Autowired
-    private UserRepo userRepo;
 
     @GetMapping("/loginPage")
-    public String login(@Valid User user, BindingResult bindingResult, Model model) {
-//        if (userRepo.findByUsername(user.getPassword()) == null) {
-//            model.addAttribute("passwordError", "Password is not correct!");
-//        }
-//        if (user.getUsername() == null) {
-//            model.addAttribute("usernameError", "Username is not correct!");
-//        }
-//
-//        if ( bindingResult.hasErrors()) {
-//            Map<String, String> errors = ControllerErrors.getErrors(bindingResult);
-//            model.mergeAttributes(errors);
-//            return "loginPage";
-//        }
+    public String loginPage() {
+        return "loginPage";
+    }
+
+    @PostMapping("/loginPage")
+    public String loginUser(@RequestParam("username") String username,
+                            @RequestParam("password") String password, @Valid User user, Model model) {
+        if (username != null && username.equals(user.getUsername())
+                && password != null && password.equals(user.getPassword())) {
+            return "redirect:/booksUser";
+        }
         return "loginPage";
     }
 }
